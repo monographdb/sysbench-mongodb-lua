@@ -107,8 +107,32 @@ local c_value_template = "###########-###########-###########-" ..
    "###########"
 
 -- 5 groups, 59 characters
+-- local pad_value_template = "###########-###########-###########-" ..
+--    "###########-###########"
+
+-- 66 groups, 791 characters
 local pad_value_template = "###########-###########-###########-" ..
-   "###########-###########"
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-" ..
+   "###########-###########-###########-"
 
 function get_c_value()
    return sysbench.rand.string(c_value_template)
@@ -142,8 +166,24 @@ function create_table(table_num)
       c_val = get_c_value()
       pad_val = get_pad_value()
       k_val = sb_rand(1, sysbench.opt.table_size)
+      k1_val = sb_rand(1, sysbench.opt.table_size)
+      k2_val = sb_rand(1, sysbench.opt.table_size)
+      k3_val = sb_rand(1, sysbench.opt.table_size)
+      k4_val = sb_rand(1, sysbench.opt.table_size)
+      k5_val = sb_rand(1, sysbench.opt.table_size)
+      k6_val = sb_rand(1, sysbench.opt.table_size)
+      k7_val = sb_rand(1, sysbench.opt.table_size)
+      k8_val = sb_rand(1, sysbench.opt.table_size)
+      k9_val = sb_rand(1, sysbench.opt.table_size)
       
-      row = { _id = i, k = k_val, c = c_val, pad = pad_val }
+      row = { _id = i, k = k_val,
+         k1 = k1_val, k2 = k2_val,
+         k3 = k3_val, k4 = k4_val,
+         k5 = k5_val, k6 = k6_val,
+         k7 = k7_val, k8 = k8_val,
+         k9 = k9_val,
+         c = c_val, pad = pad_val
+      }
       --print ( "i: ",i,"k: ",k_val,"c: ",c_val,"pad: ",pad_val)
       result = conn[table_num]:insert_one(row)
       --print (result)
@@ -153,7 +193,18 @@ function create_table(table_num)
       print(string.format("Creating a secondary index on 'sbtest%d'...",
                           table_num))
 
-      mongodb_database:command("createIndexes", "sbtest"..table_num , { indexes = {{ key = { k = 1}, name = "k"}}})
+      mongodb_database:command("createIndexes", "sbtest"..table_num , { indexes = {
+         { key = { k = 1}, name = "k"},
+         { key = { k1 = 1}, name = "k1"},
+         { key = { k2 = 1}, name = "k2"},
+         { key = { k3 = 1}, name = "k3"},
+         { key = { k4 = 1}, name = "k4"},
+         { key = { k5 = 1}, name = "k5"},
+         { key = { k6 = 1}, name = "k6"},
+         { key = { k7 = 1}, name = "k7"},
+         { key = { k8 = 1}, name = "k8"},
+         { key = { k9 = 1}, name = "k9"}
+      }})
    end
 end
 
