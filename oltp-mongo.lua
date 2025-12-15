@@ -559,7 +559,7 @@ function execute_index_updates()
                        c2 = get_c_value(), c3 = get_c_value(),
                        c4 = get_c_value(), c5 = get_c_value(),
                        c6 = get_c_value(), c7 = get_c_value(),
-                       c8 = get_c_value(), c9 = get_c_value() }}),
+                       c8 = get_c_value(), c9 = get_c_value() }})
    end
 end
 
