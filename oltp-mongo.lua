@@ -293,7 +293,7 @@ function create_table(table_num)
       -- }
       --print ( "i: ",i,"k: ",k_val,"c: ",c_val,"pad: ",pad_val)
       row = { _id = i, 
-         k0 = k0_val, k1 = k1_val, k2 = k2_val,
+         k0 = i, k1 = k1_val, k2 = k2_val,
          k3 = k3_val, k4 = k4_val, k5 = k5_val,
          k6 = k6_val, k7 = k7_val, k8 = k8_val,
          k9 = k9_val,
